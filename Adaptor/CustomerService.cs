@@ -11,10 +11,12 @@ namespace Adaptor
     public class CustomerService : ICustomerService
     {
         private readonly ICustomerRepository _customerRepository;
+        private readonly ICacheStorage _cacheStorage;
 
-        public CustomerService(ICustomerRepository customerRepository)
+        public CustomerService(ICustomerRepository customerRepository, ICacheStorage cacheStorage)
         {
             _customerRepository = customerRepository;
+            _cacheStorage = cacheStorage;
         }
 
         public IList<Customer> GetAllCustomers()
