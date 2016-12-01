@@ -23,12 +23,12 @@ namespace Adaptor
         {
             const string storageKey = "GetAllCustomers";
 
-            IList<Customer> customers = (List<Customer>)HttpContext.Current.Cache.Get(storageKey);
-
+            IList<Customer> customers = _cacheStorage.Get<List<Customer>>(storageKey);
+            
             if (customers == null)
             {
                 customers = _customerRepository.GetCustomers();
-                HttpContext.Current.Cache.Insert(storageKey, customers);
+                _cacheStorage.Store(storageKey, customers);
             }
 
             return customers;
