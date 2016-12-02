@@ -1,4 +1,6 @@
-Learning the design patterns from the following sites
+# Design Patterns 
+
+Reference links:
 
 [Beginor's Design Patterns Github Repository](https://github.com/beginor/DesignPatterns)
 
