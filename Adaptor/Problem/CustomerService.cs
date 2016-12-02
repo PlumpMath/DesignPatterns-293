@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.Web;
 
-namespace Adaptor
+namespace Adaptor.Problem
 {
     public interface ICustomerService
     {
@@ -11,24 +11,22 @@ namespace Adaptor
     public class CustomerService : ICustomerService
     {
         private readonly ICustomerRepository _customerRepository;
-        private readonly ICacheStorage _cacheStorage;
 
-        public CustomerService(ICustomerRepository customerRepository, ICacheStorage cacheStorage)
+        public CustomerService(ICustomerRepository customerRepository)
         {
             _customerRepository = customerRepository;
-            _cacheStorage = cacheStorage;
         }
 
         public IList<Customer> GetAllCustomers()
         {
             const string storageKey = "GetAllCustomers";
 
-            IList<Customer> customers = _cacheStorage.Get<List<Customer>>(storageKey);
+            IList<Customer> customers = (IList <Customer>)HttpContext.Current.Cache.Get(storageKey);
             
             if (customers == null)
             {
                 customers = _customerRepository.GetCustomers();
-                _cacheStorage.Store(storageKey, customers);
+                HttpContext.Current.Cache.Insert(storageKey, customers);
             }
 
             return customers;

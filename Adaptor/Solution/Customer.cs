@@ -1,4 +1,4 @@
-namespace Adaptor
+namespace Adaptor.Solution
 {
     public class Customer
     {

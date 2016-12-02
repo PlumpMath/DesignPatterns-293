@@ -1,7 +1,6 @@
-﻿using System.Runtime.InteropServices.ComTypes;
-using System.Web;
+﻿using System.Web;
 
-namespace Adaptor
+namespace Adaptor.Solution
 {
     public interface ICacheStorage
     {
